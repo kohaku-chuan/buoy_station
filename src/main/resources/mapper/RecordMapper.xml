@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqls.buoy_station.mapper.RecordMapper">
+
+    <insert id="insertExceptionRecord" parameterType="com.xqls.buoy_station.entity.ExceptionRecord">
+        insert into buoy_station_exception_record(address, time, type, content)
+        values (#{address}, now(), #{type}, #{content})
+    </insert>
+    <insert id="savePacketRecord">
+        insert into buoy_station_packet_record(address, time, type, content)
+        VALUES (#{address}, now(), #{type}, #{content})
+    </insert>
+</mapper>

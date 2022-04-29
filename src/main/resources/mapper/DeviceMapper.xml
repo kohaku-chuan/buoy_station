@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqls.buoy_station.mapper.DeviceMapper">
+    <update id="makeDeviceOffline">
+        update buoy_station_device
+        set network='离线',
+            offline_time=now()
+        where address = #{address}
+    </update>
+    <update id="updateModBusRead" parameterType="com.xqls.buoy_station.entity.ModBusObject">
+        update buoy_station_device
+        set network='在线',
+            online_time=now(),
+            ip=#{ip},
+            `port`=#{port}
+        where address = #{address}
+    </update>
+    <select id="getDeviceByAddress" resultType="com.xqls.buoy_station.entity.ModBusObject">
+        select *
+        from buoy_station_device
+        where address = #{address}
+    </select>
+</mapper>
